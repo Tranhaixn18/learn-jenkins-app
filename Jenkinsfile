@@ -45,7 +45,7 @@ pipeline {
             steps{
                 sh '''
                 npm install  serve
-                servenode_modules\serve -s build
+                node_modules\serve -s build
                 npx playwright test
                 '''
             }
