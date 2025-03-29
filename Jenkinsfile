@@ -2,7 +2,9 @@ pipeline {
     agent any
 
     environment {
-    DOCKER_HOST = 'tcp://host.docker.internal:2376'  // Dùng IPv4 thay vì localhost
+        DOCKER_HOST = 'tcp://docker:2376'  // Kết nối tới jenkins-docker trong cùng network
+        DOCKER_TLS_VERIFY = '1'           // Bật TLS
+        DOCKER_CERT_PATH = '/certs/client'  // Đường dẫn chứng chỉ trong container
     }
     stages {
         // stage('build') {
