@@ -34,7 +34,14 @@ pipeline {
         //         '''
         //     }
         // }
-
+        stage('Debug'){
+            steps{
+                sh '''
+                echo $DOCKER_HOST
+                docker info
+                '''
+            }
+        }
         stage('E2E'){
             agent {
                 docker {
