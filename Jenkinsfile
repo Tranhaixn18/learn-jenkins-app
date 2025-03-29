@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_HOST = 'unix:///var/run/docker.sock'  // Đảm bảo dùng socket mặc định
+    }
     stages {
         // stage('build') {
         //     agent{
@@ -20,28 +22,21 @@ pipeline {
         //         '''
         //     }
         // }
-        // stage('Test'){
-        //     agent {
-        //         docker {
-        //             image 'node:18-alpine'
-        //             reuseNode true
-        //         }
-        //     }
-        //     steps{
-        //         sh '''
-        //         test -f build/index.html
-        //         npm test
-        //         '''
-        //     }
-        // }
-        stage('Debug'){
+        stage('Test'){
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps{
                 sh '''
-                echo $DOCKER_HOST
-                docker info
+                test -f build/index.html
+                npm test
                 '''
             }
         }
+        
         stage('E2E'){
             agent {
                 docker {
