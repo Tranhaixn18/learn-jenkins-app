@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    
+
     environment {
-    DOCKER_HOST = 'tcp://127.0.0.1:2375'  // Dùng IPv4 thay vì localhost
+    DOCKER_HOST = 'tcp://host.docker.internal:2375'  // Dùng IPv4 thay vì localhost
     }
     stages {
         // stage('build') {
