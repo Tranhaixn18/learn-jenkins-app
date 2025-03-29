@@ -1,7 +1,8 @@
 pipeline {
     agent any
+    
     environment {
-        DOCKER_HOST = 'unix:///var/run/docker.sock'  // Đảm bảo dùng socket mặc định
+    DOCKER_HOST = 'tcp://127.0.0.1:2375'  // Dùng IPv4 thay vì localhost
     }
     stages {
         // stage('build') {
